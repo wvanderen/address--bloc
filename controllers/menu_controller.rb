@@ -15,6 +15,7 @@ class MenuController
         puts "4 - View Entry Number n"
         puts "5 - Import entries from a CSV"
         puts "6 - Exit"
+        puts "7 - Annhialate all entries"
         print "Enter your selection: "
         
         selection = gets.to_i
@@ -43,12 +44,16 @@ class MenuController
             when 6
                 puts "Good-bye!"
                 exit(0)
+            when 7
+                system "clear"
+                annhialate_entries
+                main_menu
             else
                 system "clear"
                 puts "Sorry, that is not a valid input"
                 main_menu
-            end
         end
+    end
         
     def view_all_entries
         address_book.entries.each do |entry|
@@ -190,5 +195,10 @@ class MenuController
         system "clear"
         puts "Updated entry:"
         puts entry
+    end
+    
+    def annhialate_entries
+        address_book.entries.clear
+        puts "You've deleted all of the entries. I hope you feel good about yourself"
     end
 end
